@@ -1,56 +1,80 @@
 package com.uce;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {String [][] bingo = new String [5][5];
+    public static void main(String[] args) {
+
+        String[][] bingo = new String[5][];
+
+        Random rnd = new Random();
         Scanner sc = new Scanner(System.in);
 
-        boolean[] usados = new boolean[100]; 
-        
-        for(int i=0; i<bingo.length; i++){
-            for(int j=0; j<bingo[i].length; j++){
-                int numeroAleatorio;
+        for (int i = 0; i < bingo.length; i++) {
+            bingo[i] = new String[rnd.nextInt(3) + 3];
+        }
 
-                do {
-                    numeroAleatorio = (int)(Math.random() * 100);
-                } while (usados[numeroAleatorio] == true);
-                
-                usados[numeroAleatorio] = true;
-                bingo[i][j] = String.valueOf(numeroAleatorio);
+        for (int i = 0; i < bingo.length; i++) {
+            for (int j = 0; j < bingo[i].length; j++) {
+                bingo[i][j] = String.valueOf(rnd.nextInt(99) + 1);
             }
         }
 
-        System.out.println("---------- Tabla de Bingo ----------");
-        for(int i=0; i<bingo.length; i++){
-            for(int j=0; j<bingo[i].length; j++){
-                System.out.print(bingo[i][j] + "\t");
-            }
-            System.out.println();
-        }
+        System.out.println(" Tabla de Bingo ");
+        System.out.println("---------------------------------");
 
-        while(true){
-            System.out.println("Ingrese una fila:");
-            int fila = sc.nextInt();
-            if(fila == -1){
-                break;
-            }
-            
-            System.out.println("Ingrese una columna:");
-            int columna = sc.nextInt();
+        for (int turno = 1; turno <= 100; turno++) {
 
-            if (fila >= 0 && fila < 5 && columna >= 0 && columna < 5) {
-                bingo[fila][columna] = "x";
-            } else {
-                System.out.println("Ese índice no existe. Solo usa números del 0 al 4.");
-                continue; 
-            }
-            
-            System.out.println("---------- Tabla de Bingo ----------");
-            for(int i=0; i<bingo.length; i++){
-                for(int j=0; j<bingo[i].length; j++){
+            for (int i = 0; i < bingo.length; i++) {
+                for (int j = 0; j < bingo[i].length; j++) {
                     System.out.print(bingo[i][j] + "\t");
                 }
                 System.out.println();
+            }
+
+            System.out.println("---------------------------------");
+
+            System.out.print("\nIngrese su número: ");
+            String num = sc.nextLine();
+
+            for (int i = 0; i < bingo.length; i++) {
+                for (int j = 0; j < bingo[i].length; j++) {
+                    if (bingo[i][j].equals(num)) {
+                        bingo[i][j] = "X";
+                    }
+                }
+            }
+
+            boolean gano = false;
+
+            for (int i = 0; i < bingo.length; i++) {
+                int contadorFila = 0;
+
+                for (int j = 0; j < bingo[i].length; j++) {
+                    if (bingo[i][j].equals("X")) {
+                        contadorFila++;
+                    }
+                }
+
+                if (contadorFila == bingo[i].length) {
+                    gano = true;
+                    break;
+                }
+            }
+
+            if (gano) {
+                System.out.println("B   I   N   G   O");
+                System.out.println("---------------------------------");
+
+                for (int i = 0; i < bingo.length; i++) {
+                    for (int j = 0; j < bingo[i].length; j++) {
+                        System.out.print(bingo[i][j] + "\t");
+                    }
+                    System.out.println();
+                }
+
+                System.out.println("\nBingoooooooo");
+                break;
             }
         }
         sc.close();
