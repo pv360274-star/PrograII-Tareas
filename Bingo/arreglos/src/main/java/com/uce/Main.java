@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        String[][] bingo = new String[5][];
+        String[][] bingo = new String[6][];
 
         Random rnd = new Random();
         Scanner sc = new Scanner(System.in);
