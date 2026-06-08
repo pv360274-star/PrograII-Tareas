@@ -2,7 +2,7 @@ package com.uce2;
 
 public class Main {
     public static void main(String[] args) {
-        
+
         Curso[][] redAcademias = new Curso[3][];
         redAcademias[0] = new Curso[3];
         redAcademias[0][0] = new Curso("Matemáticas", 18);
