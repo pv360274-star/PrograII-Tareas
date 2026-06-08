@@ -11,7 +11,7 @@ public class Curso {
         this.nombre = nombre;
 
         Random rand = new Random();
-        this.capacidadMaxima = rand.nextInt(15) + 20; 
+        this.capacidadMaxima = rand.nextInt(16) + 20; 
 
         if (inscritosIniciales > this.capacidadMaxima) {
             System.out.println("El número de alumnos no puede exceder a " + this.capacidadMaxima);
