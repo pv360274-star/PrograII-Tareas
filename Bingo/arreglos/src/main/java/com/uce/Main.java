@@ -64,6 +64,7 @@ public class Main {
 
             if (gano) {
                 System.out.println("B\tI\tN\tG\tO");
+                System.out.println("B   I   N   G   O");
                 System.out.println("---------------------------------");
 
                 for (int i = 0; i < bingo.length; i++) {
